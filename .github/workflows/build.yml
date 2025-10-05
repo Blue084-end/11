@@ -1,3 +1,4 @@
+
 name: Build Android APK
 
 on:
@@ -16,7 +17,11 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'      # ✅ dòng này là bắt buộc
           java-version: '17'
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew        # ✅ giúp tránh lỗi thiếu quyền
 
       - name: Build APK
         run: ./gradlew assembleDebug
